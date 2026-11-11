@@ -59,4 +59,12 @@ describe('mergeWithPrevious', () => {
     const merged = mergeWithPrevious(next, prev);
     expect(merged.modules.at(-1)).toMatchObject({ id: 'OLDMOD', items: [{ id: 'Z', status: 'removed' }] });
   });
+
+  it('carries the previous file and hash forward when an item becomes locked/unavailable/error', () => {
+    const prev: Manifest = structuredClone(next);
+    Object.assign(prev.modules[0]!.items[0]!, { status: 'ok', file: 'raw/01 - a (video).md', content_hash: 'sha256:p' });
+    const now: Manifest = structuredClone(next);
+    Object.assign(now.modules[0]!.items[0]!, { status: 'locked', file: null, content_hash: null });
+    expect(mergeWithPrevious(now, prev).modules[0]!.items[0]).toMatchObject({ status: 'locked', file: 'raw/01 - a (video).md', content_hash: 'sha256:p' });
+  });
 });

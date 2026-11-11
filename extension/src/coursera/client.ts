@@ -19,6 +19,12 @@ export class LockedError extends Error {
     super(`Item is locked for this account: ${url}`);
   }
 }
+/** The environment is broken (Coursera tab closed, vault not writable): stop the whole sync, don't blame the item. */
+export class EnvironmentError extends Error {}
+
+export const TAB_GONE_MESSAGE =
+  'Mất kết nối với tab Coursera (tab đã đóng hoặc tải lại). Mở lại trang khóa học rồi bấm Bắt đầu để chạy tiếp.';
+
 export class HttpError extends Error {
   constructor(public status: number, url: string) {
     super(`HTTP ${status} for ${url}`);
@@ -54,7 +60,7 @@ export class CourseraClient {
       try {
         res = await this.fetcher(url);
       } catch {
-        res = { status: 599, text: '' };
+        throw new EnvironmentError(TAB_GONE_MESSAGE);
       }
       if (res.status === 0 && res.text === 'NOT_ALLOWED') throw new NotAllowedError(url);
       if (res.status >= 200 && res.status < 300) {

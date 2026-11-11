@@ -86,7 +86,8 @@ export function renderModuleMd(mod: OutlineModule, mm: ManifestModule, courseSlu
     const url = item ? itemUrl(courseSlug, item) : `${ORIGIN}/learn/${courseSlug}/item/${mi.id}`;
     if (mi.type === 'quiz') return `- 🧪 ${mi.title}${mi.graded ? ' (graded)' : ' (practice)'} — [Coursera](${url})`;
     const extra = item?.durationMin ? ` · ${item.durationMin} min` : '';
-    if (mi.file && (mi.status === 'ok' || mi.status === 'removed')) return `- [[Coursera/${courseSlug}/${mm.folder}/${stripMd(mi.file)}|${mi.title}]] · ${mi.type}${extra}`;
+    const note = mi.status === 'ok' ? '' : ` · ${mi.status}`;
+    if (mi.file) return `- [[Coursera/${courseSlug}/${mm.folder}/${stripMd(mi.file)}|${mi.title}]] · ${mi.type}${extra}${note}`;
     return `- ${mi.title} · ${mi.type} · ${mi.status} — [Coursera](${url})`;
   });
   parts.push(`## Items\n\n${lines.join('\n')}`);

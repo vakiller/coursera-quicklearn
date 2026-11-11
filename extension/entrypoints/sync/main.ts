@@ -1,5 +1,5 @@
 import { CourseraClient } from '../../src/coursera/client';
-import { syncCourse, type SyncReport } from '../../src/sync/sync-course';
+import { memoryResumeStore, syncCourse, type ResumeStore, type SyncReport } from '../../src/sync/sync-course';
 import { chromeResumeStore } from '../../src/sync/chrome-resume-store';
 import { makeTabFetcher } from '../../src/tab-fetcher';
 import { FsAccessWriter, ZipWriter, ensurePermission, loadRootHandle, saveRootHandle, type VaultWriter } from '../../src/vault/writers';
@@ -26,16 +26,22 @@ $('pick').onclick = async () => {
 function renderReport(r: SyncReport, extra = '') {
   const el = $('report');
   el.hidden = false;
-  el.className = r.stoppedForAuth ? 'warn' : '';
+  const stopped = r.stoppedForAuth || r.stoppedForEnvironment;
+  el.className = stopped ? 'warn' : '';
   el.textContent =
-    (r.stoppedForAuth ? 'Phiên đăng nhập Coursera đã hết. Đăng nhập lại rồi bấm Bắt đầu để chạy tiếp.\n\n' : 'Xong.\n\n') +
+    (r.stoppedForAuth
+      ? 'Phiên đăng nhập Coursera đã hết. Đăng nhập lại rồi bấm Bắt đầu để chạy tiếp.\n\n'
+      : r.stoppedForEnvironment
+        ? `${r.stoppedForEnvironment}\n\n`
+        : 'Xong.\n\n') +
+    (r.resumed ? `Chạy tiếp từ lần trước: ${r.resumed} bài đã xong được giữ lại.\n` : '') +
     `Thành công: ${r.ok} (ghi mới/cập nhật: ${r.written}, không đổi: ${r.unchanged})\n` +
     `Bị khóa: ${r.locked} · Không có transcript: ${r.unavailable} · Lỗi: ${r.error}\n` +
     `Bài quiz/test (chỉ ghi tên, không mở): ${r.quizzes}` +
     extra;
 }
 
-async function run(writer: VaultWriter): Promise<SyncReport | null> {
+async function run(writer: VaultWriter, destination: string, resume: ResumeStore): Promise<SyncReport | null> {
   const buttons = ['start', 'zip', 'pick'].map((id) => $<HTMLButtonElement>(id));
   buttons.forEach((b) => (b.disabled = true));
   $('report').hidden = true;
@@ -44,7 +50,8 @@ async function run(writer: VaultWriter): Promise<SyncReport | null> {
     return await syncCourse(slug, {
       client,
       writer,
-      resume: chromeResumeStore,
+      resume,
+      destination,
       lang: $<HTMLSelectElement>('lang').value,
       now: () => new Date().toISOString(),
       onProgress: (done, total, title) => {
@@ -69,13 +76,13 @@ $('start').onclick = async () => {
     $('vault').textContent = 'Chrome chưa cấp quyền ghi vào thư mục vault. Bấm "Chọn thư mục vault" để cấp lại.';
     return;
   }
-  const report = await run(new FsAccessWriter(root));
+  const report = await run(new FsAccessWriter(root), `vault:${root.name}`, chromeResumeStore);
   if (report) renderReport(report);
 };
 
 $('zip').onclick = async () => {
   const writer = new ZipWriter();
-  const report = await run(writer);
+  const report = await run(writer, 'zip', memoryResumeStore());
   if (!report) return;
   const a = document.createElement('a');
   a.href = URL.createObjectURL(await writer.finish());

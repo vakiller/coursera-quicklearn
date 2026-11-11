@@ -1,5 +1,5 @@
 import { readFileSync } from 'node:fs';
-import { CourseraClient, AuthError, HttpError, LockedError, NotAllowedError, type Fetcher } from '../src/coursera/client';
+import { CourseraClient, AuthError, EnvironmentError, HttpError, LockedError, NotAllowedError, type Fetcher } from '../src/coursera/client';
 import { urls } from '../src/coursera/endpoints';
 
 const fx = (f: string) => readFileSync(`test/fixtures/${f}`, 'utf8');
@@ -93,5 +93,13 @@ describe('CourseraClient', () => {
   it('treats a bridge NOT_ALLOWED reply as NotAllowedError', async () => {
     const { client } = setup(() => ({ status: 0, text: 'NOT_ALLOWED' }));
     await expect(client.getReadingCml('c', 'i')).rejects.toBeInstanceOf(NotAllowedError);
+  });
+
+  it('treats a throwing fetcher (tab closed) as an environment failure, without retrying', async () => {
+    const { client, calls } = setup(() => {
+      throw new Error('No tab with id: 7');
+    });
+    await expect(client.getReadingCml('c', 'i')).rejects.toBeInstanceOf(EnvironmentError);
+    expect(calls).toHaveLength(1);
   });
 });

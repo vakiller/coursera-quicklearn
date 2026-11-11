@@ -33,6 +33,15 @@ export function mergeWithPrevious(next: Manifest, prev: Manifest | null): Manife
   if (!prev) return next;
   const merged: Manifest = structuredClone(next);
   const removed = (i: ManifestItem): ManifestItem => ({ ...i, status: 'removed' });
+  const prevItems = new Map(prev.modules.flatMap((m) => m.items.map((i) => [i.id, i] as const)));
+  for (const nm of merged.modules)
+    for (const ni of nm.items) {
+      const pi = prevItems.get(ni.id);
+      if (!ni.file && pi?.file && ['locked', 'unavailable', 'error'].includes(ni.status)) {
+        ni.file = pi.file;
+        ni.content_hash = pi.content_hash;
+      }
+    }
   for (const pm of prev.modules) {
     const nm = merged.modules.find((m) => m.id === pm.id);
     if (!nm) {

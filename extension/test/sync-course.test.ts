@@ -14,14 +14,24 @@ interface Opts {
   vttFor?: (itemId: string) => string;
   noEnglishFor?: string;
   status401For?: string;
+  status404For?: string;
+  expiredFrom?: string;
+  tabGoneFrom?: string;
 }
 
 function makeFetcher(opts: Opts = {}) {
   const calls: string[] = [];
+  let expired = false;
+  let tabGone = false;
   const fetcher: Fetcher = async (url) => {
     calls.push(url);
     const itemId = /~([^?]+)\?/.exec(url)?.[1];
+    if (itemId && itemId === opts.tabGoneFrom) tabGone = true;
+    if (tabGone) throw new Error('No tab with id: 7');
+    if (itemId && itemId === opts.expiredFrom) expired = true;
+    if (expired) return { status: 403, text: '' };
     if (itemId && itemId === opts.status401For) return { status: 401, text: '' };
+    if (itemId && itemId === opts.status404For) return { status: 404, text: '' };
     if (url.includes('onDemandCourses.v1')) return { status: 200, text: fx('course.json') };
     if (url.includes('onDemandCourseMaterials')) return { status: 200, text: fx('outline.json') };
     if (url.includes('onDemandLectureVideos')) {
@@ -46,6 +56,7 @@ const deps = (fetcher: Fetcher, writer: MemoryWriter, resume = memoryResumeStore
   writer,
   resume,
   lang: 'en',
+  destination: 'vault:test',
   now: () => '2026-11-11T09:00:00Z',
 });
 
@@ -106,7 +117,7 @@ describe('syncCourse', () => {
     const resume = memoryResumeStore();
     const first = await syncCourse(SLUG, deps(makeFetcher({ status401For: 'KgGcu' }).fetcher, w, resume));
     expect(first.stoppedForAuth).toBe(true);
-    expect(Object.keys(await resume.load(SLUG)).sort()).toEqual(['CQ4he', 'qHFCW']);
+    expect(Object.keys((await resume.load(SLUG))!.done).sort()).toEqual(['CQ4he', 'qHFCW']);
     expect(w.files.has(`${BASE}/_manifest.json`)).toBe(false);
 
     const again = makeFetcher();
@@ -114,7 +125,7 @@ describe('syncCourse', () => {
     expect(second.stoppedForAuth).toBe(false);
     expect(again.calls.some((u) => u.includes('~qHFCW') || u.includes('~CQ4he'))).toBe(false);
     expect(manifestOf(w).modules[0]!.items[0]!.status).toBe('ok');
-    expect(await resume.load(SLUG)).toEqual({});
+    expect(await resume.load(SLUG)).toBeNull();
   });
 
   it('reports progress over content items', async () => {
@@ -122,5 +133,79 @@ describe('syncCourse', () => {
     const w = new MemoryWriter();
     await syncCourse(SLUG, { ...deps(makeFetcher().fetcher, w), onProgress: (done, total) => seen.push(done / total) });
     expect(seen.at(-1)).toBe(1);
+  });
+
+  it('stops (without retrying or overwriting the manifest) when the Coursera tab is gone', async () => {
+    const w = new MemoryWriter();
+    await syncCourse(SLUG, deps(makeFetcher().fetcher, w));
+    const good = w.files.get(`${BASE}/_manifest.json`);
+    const resume = memoryResumeStore();
+    const gone = makeFetcher({ tabGoneFrom: 'KgGcu' });
+    const report = await syncCourse(SLUG, deps(gone.fetcher, w, resume));
+    expect(report.stoppedForEnvironment).toMatch(/tab/i);
+    expect(gone.calls.filter((u) => u.includes('~KgGcu'))).toHaveLength(1);
+    expect(w.files.get(`${BASE}/_manifest.json`)).toBe(good);
+    expect(Object.keys((await resume.load(SLUG))!.done).sort()).toEqual(['CQ4he', 'qHFCW']);
+  });
+
+  it('stops with a clear reason when the vault cannot be written', async () => {
+    class FailingWriter extends MemoryWriter {
+      override async writeText(path: string, content: string) {
+        if (path.includes('/raw/')) throw new DOMException('denied', 'NotAllowedError');
+        return super.writeText(path, content);
+      }
+    }
+    const w = new FailingWriter();
+    const resume = memoryResumeStore();
+    const report = await syncCourse(SLUG, deps(makeFetcher().fetcher, w, resume));
+    expect(report.stoppedForEnvironment).toMatch(/vault/i);
+    expect(w.files.has(`${BASE}/_manifest.json`)).toBe(false);
+    expect((await resume.load(SLUG))?.done ?? {}).toEqual({});
+  });
+
+  it('does not persist per-item errors in resume, so they are retried', async () => {
+    const resume = memoryResumeStore();
+    const w = new MemoryWriter();
+    await syncCourse(SLUG, deps(makeFetcher({ status404For: 'CQ4he', status401For: 'KgGcu' }).fetcher, w, resume));
+    expect(Object.keys((await resume.load(SLUG))!.done)).toEqual(['qHFCW']);
+  });
+
+  it('does not keep items falsely marked locked by an expiring session', async () => {
+    const resume = memoryResumeStore();
+    const w = new MemoryWriter();
+    const first = await syncCourse(SLUG, deps(makeFetcher({ expiredFrom: 'KgGcu' }).fetcher, w, resume));
+    expect(first.stoppedForAuth).toBe(true);
+    expect(Object.keys((await resume.load(SLUG))!.done).sort()).toEqual(['CQ4he', 'qHFCW']);
+  });
+
+  it('discards resume data from a different language or destination', async () => {
+    const resume = memoryResumeStore();
+    const w = new MemoryWriter();
+    await syncCourse(SLUG, deps(makeFetcher({ status401For: 'KgGcu' }).fetcher, w, resume));
+    const again = makeFetcher();
+    const report = await syncCourse(SLUG, { ...deps(again.fetcher, w, resume), lang: 'vi' });
+    expect(again.calls.some((u) => u.includes('~qHFCW'))).toBe(true);
+    expect(report.resumed).toBe(0);
+  });
+
+  it('discards resume data older than 7 days and reports resumed items otherwise', async () => {
+    const resume = memoryResumeStore();
+    const w = new MemoryWriter();
+    await syncCourse(SLUG, deps(makeFetcher({ status401For: 'KgGcu' }).fetcher, w, resume));
+    const fresh = await syncCourse(SLUG, { ...deps(makeFetcher({ status401For: 'KgGcu' }).fetcher, w, resume), now: () => '2026-11-12T09:00:00Z' });
+    expect(fresh.resumed).toBe(2);
+    const later = makeFetcher();
+    await syncCourse(SLUG, { ...deps(later.fetcher, w, resume), now: () => '2026-11-30T09:00:00Z' });
+    expect(later.calls.some((u) => u.includes('~qHFCW'))).toBe(true);
+  });
+
+  it('keeps the old file link when a previously fetched item becomes locked', async () => {
+    const w = new MemoryWriter();
+    await syncCourse(SLUG, deps(makeFetcher().fetcher, w));
+    await syncCourse(SLUG, deps(makeFetcher({ noEnglishFor: 'qHFCW' }).fetcher, w));
+    const item = manifestOf(w).modules[0]!.items[0]!;
+    expect(item.status).toBe('unavailable');
+    expect(item.file).toBe('raw/01 - Introduction to Course 2 (video).md');
+    expect(w.files.get(`${BASE}/M01 - Fundamentals of project initiation/_module.md`)).toContain('raw/01 - Introduction to Course 2 (video)|Introduction to Course 2]] · video · 3 min · unavailable');
   });
 });
