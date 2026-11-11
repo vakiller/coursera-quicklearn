@@ -1,0 +1,5 @@
+node_modules/
+.output/
+.wxt/
+.superpowers/
+.DS_Store
