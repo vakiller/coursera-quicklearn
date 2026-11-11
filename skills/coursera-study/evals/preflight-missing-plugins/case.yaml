@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: preflight-missing-plugins
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  The reply reports, in Vietnamese, that Spaced Repetition is missing (required) and how to install it,
+  that Local REST API/MCP is optional, that Canvas and Bases are enabled, that _profile.md is missing,
+  and that all 4 modules have no notes yet. No study notes are generated.
