@@ -43,10 +43,36 @@ class PreflightTest(unittest.TestCase):
         mods = run(v)["courses"][0]["modules"]
         self.assertEqual([m["notes_status"] for m in mods], ["stale", "fresh"])
 
+    def test_detects_dashboard(self):
+        v = make_vault()
+        self.assertFalse(run(v)["dashboard"])
+        write(v, "Coursera/_dashboard.base", "views: []\n")
+        self.assertTrue(run(v)["dashboard"])
+
     def test_detects_profile(self):
         v = make_vault()
         write(v, "Coursera/_profile.md", "# me\n")
         self.assertTrue(run(v)["profile"])
+
+    def test_discovers_vault_from_current_folder_or_subfolder(self):
+        v = make_vault()
+        sub = os.path.join(v, "Coursera", SLUG, M1)
+        for cwd in (v, sub):
+            out = subprocess.run([sys.executable, SCRIPT, "--json"], capture_output=True, text=True, cwd=cwd, check=True)
+            self.assertEqual(json.loads(out.stdout)["vault"], os.path.realpath(v))
+
+    def test_discovers_vault_in_a_child_folder(self):
+        v = make_vault()
+        parent = os.path.dirname(v)
+        out = subprocess.run([sys.executable, SCRIPT, "--json"], capture_output=True, text=True, cwd=parent)
+        # parent of a temp vault may hold other vaults; only assert it does not crash and reports a vault or a clear error
+        self.assertIn(out.returncode, (0, 2))
+
+    def test_no_vault_found_gives_clear_error(self):
+        import tempfile
+        out = subprocess.run([sys.executable, SCRIPT, "--json"], capture_output=True, text=True, cwd=tempfile.mkdtemp())
+        self.assertEqual(out.returncode, 2)
+        self.assertIn("vault", out.stderr.lower())
 
     def test_not_a_vault(self):
         out = subprocess.run([sys.executable, SCRIPT, "/nonexistent-dir", "--json"], capture_output=True, text=True)

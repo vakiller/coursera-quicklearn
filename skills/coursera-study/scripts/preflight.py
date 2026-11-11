@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Check an Obsidian vault before generating study notes.
 
-Usage: preflight.py <vault> [--json]
+Usage: preflight.py [vault] [--json]
+Without a vault path, the vault is found from the current folder (itself, a parent, or a single child
+folder that contains Coursera/<course>/_manifest.json) — run Claude Code inside the vault.
 Reports Coursera courses + per-module note status (missing/stale/fresh), community plugins
 (missing/installed/enabled), core plugins, and whether Coursera/_profile.md exists.
 It never installs or changes anything.
@@ -11,7 +13,7 @@ import os
 import sys
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from _vault import courses, module_source_hash, notes_status, read  # noqa: E402
+from _vault import courses, find_vault, module_source_hash, notes_status, read  # noqa: E402
 
 REQUIRED_PLUGINS = {"obsidian-spaced-repetition": "Spaced Repetition (flashcard review)"}
 OPTIONAL_PLUGINS = {
@@ -46,7 +48,7 @@ def check(vault):
     missing += [f"core:{k}" for k, on in core_state.items() if not on]
 
     return {
-        "vault": os.path.abspath(vault),
+        "vault": os.path.realpath(vault),
         "courses": [
             {
                 "slug": slug,
@@ -62,6 +64,7 @@ def check(vault):
         "plugins": plugins,
         "core": core_state,
         "profile": os.path.isfile(os.path.join(vault, "Coursera", "_profile.md")),
+        "dashboard": os.path.isfile(os.path.join(vault, "Coursera", "_dashboard.base")),
         "required_missing": missing,
     }
 
@@ -82,14 +85,18 @@ def text_report(r):
     for k, on in r["core"].items():
         lines.append(f"  [{'enabled' if on else 'OFF':9}] core: {REQUIRED_CORE[k]}")
     lines.append(f"  [{'ok' if r['profile'] else 'missing':9}] Coursera/_profile.md")
+    lines.append(f"  [{'ok' if r['dashboard'] else 'missing':9}] Coursera/_dashboard.base")
     return "\n".join(lines)
 
 
 def main(argv):
-    if len(argv) < 2 or not os.path.isdir(argv[1]):
-        print("usage: preflight.py <vault> [--json]  (vault folder not found)", file=sys.stderr)
+    args = [a for a in argv[1:] if not a.startswith("--")]
+    vault = args[0] if args else find_vault(os.getcwd())
+    if not vault or not os.path.isdir(vault):
+        print("No vault found: run Claude Code inside your Obsidian vault (the folder with Coursera/), "
+              "or pass the vault path: preflight.py <vault> [--json]", file=sys.stderr)
         return 2
-    r = check(argv[1])
+    r = check(vault)
     print(json.dumps(r, ensure_ascii=False, indent=2) if "--json" in argv else text_report(r))
     return 0
 

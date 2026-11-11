@@ -63,3 +63,29 @@ def notes_status(vault, slug, module):
 def vault_link(slug, folder, file):
     """Full-path wikilink target (no .md) — basenames collide across courses."""
     return f"{COURSERA}/{slug}/{folder}/{file[:-3] if file.endswith('.md') else file}"
+
+
+def is_vault(path):
+    root = os.path.join(path, COURSERA)
+    return os.path.isdir(root) and any(
+        os.path.isfile(os.path.join(root, d, "_manifest.json")) for d in os.listdir(root)
+    )
+
+
+def find_vault(start):
+    """The vault is the folder Claude is working in: start, one of its parents, or a single child folder."""
+    cur = os.path.realpath(start)
+    while True:
+        if is_vault(cur):
+            return cur
+        parent = os.path.dirname(cur)
+        if parent == cur:
+            break
+        cur = parent
+    start = os.path.realpath(start)
+    try:
+        kids = [os.path.join(start, d) for d in sorted(os.listdir(start)) if not d.startswith(".")]
+    except OSError:
+        return None
+    found = [k for k in kids if os.path.isdir(k) and is_vault(k)]
+    return found[0] if len(found) == 1 else None

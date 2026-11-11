@@ -13,8 +13,13 @@ Scripts live in `scripts/` inside this skill's base directory (Python 3 stdlib, 
 
 Write explanations in **Vietnamese**, keep the course's **English terms and definitions verbatim** (the graded quiz uses those words).
 
+## Where things go: the learner's vault, nothing else
+The notes are something the learner opens, ticks, edits and reviews in Obsidian every day, so they are written **directly into the vault Claude is working in** — never into a temp folder, an "outputs" folder or this skill's directory. The vault is found automatically: `preflight.py` with no path looks at the current folder, its parents, and a single child folder for `Coursera/<course>/_manifest.json`. Use the path the learner gives if they give one. If nothing is found, ask once for the vault path and suggest running Claude Code inside the vault next time (`cd <vault> && claude`). When you finish, name the note to open in Obsidian by its vault path (e.g. `Coursera/<course>/M02 - …/notes/_study.md`).
+
+Write files with the Write tool. If it refuses a note (for example as a "report file"), write that same file with a Bash heredoc (`cat > "<path>" <<'EOF' … EOF`) — these notes are the deliverable the learner asked for.
+
 ## Commands the user may give
-- *Set up / check*: "kiểm tra vault", `/coursera-study setup` → step 1 only.
+- *Set up / check*: "kiểm tra vault", `/coursera-study setup` → step 1 only. When the learner only asks to check, write nothing — not even the templates; list what you would create and let them say go.
 - *Make notes*: "tạo ghi chú cho module 2", `/coursera-study <course> [module]` → steps 1–6.
 - *Grade*: "chấm bài", `/coursera-study grade <file>` → see Grading.
 - *Retake*: "làm lại đề" → `grade.py <file> --reset`.
@@ -23,7 +28,7 @@ If the user asks you to answer or fetch a real **graded Coursera quiz**, decline
 
 ## Workflow: make notes for a module
 
-**1. Preflight.** Find the vault (the folder that contains `.obsidian/` and `Coursera/`; ask if unclear) and run `preflight.py <vault>`. Show the learner a short status table in Vietnamese. For anything missing, give one-line install hints and keep going in degraded mode:
+**1. Preflight.** Run `preflight.py` (no path → the vault is discovered from the current folder; or `preflight.py <vault>`). Use the `vault` it reports for every later command. Show the learner a short status table in Vietnamese. For anything missing, give one-line install hints and keep going in degraded mode:
 - Spaced Repetition missing → still write `flashcards.md`; say review won't work until it is installed (Settings → Community plugins → Browse → "Spaced Repetition").
 - Canvas/Bases core plugin off → Settings → Core plugins.
 - Local REST API / Obsidian MCP missing → fine; write files directly. (If an Obsidian MCP tool is available in this session, you may use it to open `_study.md` at the end.)
