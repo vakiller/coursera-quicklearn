@@ -52,8 +52,8 @@ Hệ thống gồm 2 phần, tách bạch hoàn toàn:
         ├── M01 - <Module name>/
         │   ├── _module.md               # A: metadata module + danh sách item (gồm cả quiz: chỉ tên/loại)
         │   ├── raw/                     # A: nội dung gốc, KHÔNG sửa tay
-        │   │   ├── 01 - <Item title> [video].md
-        │   │   └── 02 - <Item title> [reading].md
+        │   │   ├── 01 - <Item title> (video).md
+        │   │   └── 02 - <Item title> (reading).md
         │   ├── notes/                   # B: sản phẩm AI
         │   │   ├── _study.md            # trang học chính + lộ trình học module
         │   │   ├── summary.md           # có mermaid mindmap ở đầu
@@ -75,7 +75,7 @@ Hệ thống gồm 2 phần, tách bạch hoàn toàn:
 
 **`_module.md` phải có** (lấy từ dữ liệu outline, không đụng quiz): mô tả module, **learning objectives** (nếu Coursera cung cấp, Phase 0 xác minh), thời lượng, danh sách item theo thứ tự, gồm cả quiz (chỉ tên, loại, graded).
 
-**Đặt tên:** `M` + số module 2 chữ số, item đánh số theo thứ tự trong module (tính cả quiz để số thứ tự khớp với Coursera, nên số file trong `raw/` có thể nhảy cóc). Tên file được làm sạch ký tự cấm (`/\:*?"<>|#^[]`), cắt tối đa 80 ký tự. Định danh thật là `item_id` trong frontmatter, không phải tên file.
+**Đặt tên:** Loại item để trong ngoặc tròn `(video)` vì Obsidian không link được tới tên file chứa `[ ]`. `M` + số module 2 chữ số, item đánh số theo thứ tự trong module (tính cả quiz để số thứ tự khớp với Coursera, nên số file trong `raw/` có thể nhảy cóc). Tên file được làm sạch ký tự cấm (`/\:*?"<>|#^[]`), cắt tối đa 80 ký tự. Định danh thật là `item_id` trong frontmatter, không phải tên file.
 
 ### 3.1 Frontmatter file raw
 
@@ -115,7 +115,7 @@ Block id dùng để note AI trích dẫn ngược chính xác tới đoạn g�
   "modules": [
     { "index": 1, "id": "", "title": "", "folder": "M01 - ...",
       "items": [
-        { "index": 1, "id": "", "type": "video", "title": "", "file": "raw/01 - ... [video].md",
+        { "index": 1, "id": "", "type": "video", "title": "", "file": "raw/01 - ... (video).md",
           "content_hash": "", "status": "ok|locked|unavailable|error|removed" },
         { "index": 5, "id": "", "type": "quiz", "title": "", "graded": true, "file": null,
           "status": "not_fetched" }
@@ -159,7 +159,7 @@ Gồm `SKILL.md`, các template output, prompt cho từng loại note và một 
 - **`/coursera-study setup`**: chạy preflight (mục 5.3) và chọn vault/khóa.
 - **`/coursera-study <course> [module]`**: tạo hoặc cập nhật `notes/` cho module (hoặc mọi module có note cũ).
   - `_study.md`: **trang học chính**, gồm lộ trình học (mục 5.8), checklist, link tới mọi note, và danh sách bài quiz/test thật của module lấy từ manifest kèm link Coursera.
-  - `summary.md`: bản đọc khoảng 10 phút, mở đầu bằng Mermaid mindmap. Mỗi ý có trích dẫn nguồn `[[01 - … [video]#^t0215]]`.
+  - `summary.md`: bản đọc khoảng 10 phút, mở đầu bằng Mermaid mindmap. Mỗi ý có trích dẫn nguồn `[[01 - … (video)#^t0215]]`.
   - `mindmap.canvas`: sơ đồ tư duy tương tác.
   - `exam-prep.md`: phân tích để pass test (mục 5.6).
   - `examples.md`: ví dụ thực tế (mục 5.7).
@@ -265,7 +265,7 @@ Bạn vừa được giao dự án triển khai CRM mới. Việc nào nên làm
 - [ ] D. Viết tài liệu nghiệm thu
 
 > [!success]- Đáp án & giải thích
-> **B.** … Vì sao A/C/D chưa phải bước đầu: … · Nguồn: [[03 - … [video]#^t0215]]
+> **B.** … Vì sao A/C/D chưa phải bước đầu: … · Nguồn: [[03 - … (video)#^t0215]]
 
 ### Câu 7 *(Điền)* · Objective: Define project scope
 Thuật ngữ chỉ việc phạm vi dự án bị mở rộng ngoài kiểm soát là gì?

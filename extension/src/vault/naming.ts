@@ -12,5 +12,5 @@ export function moduleFolderName(index: number, name: string): string {
 }
 
 export function itemFileName(index: number, title: string, type: 'video' | 'reading'): string {
-  return `${pad2(index)} - ${sanitizeFileName(title)} [${type}].md`;
+  return `${pad2(index)} - ${sanitizeFileName(title)} (${type}).md`;
 }

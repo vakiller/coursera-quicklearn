@@ -19,8 +19,8 @@ describe('moduleFolderName', () => {
 });
 
 describe('itemFileName', () => {
-  it('builds "NN - Title [type].md"', () => {
-    expect(itemFileName(7, 'Introduction [Part 1]', 'video')).toBe('07 - Introduction Part 1 [video].md');
+  it('builds "NN - Title (type).md" (Obsidian links break on square brackets)', () => {
+    expect(itemFileName(7, 'Introduction [Part 1]', 'video')).toBe('07 - Introduction Part 1 (video).md');
   });
   it('stays unique for duplicate titles thanks to the index', () => {
     expect(itemFileName(1, 'Same', 'video')).not.toBe(itemFileName(2, 'Same', 'video'));
