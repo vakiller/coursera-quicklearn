@@ -1,5 +1,5 @@
 {
   "extends": "./.wxt/tsconfig.json",
-  "compilerOptions": { "strict": true, "noUncheckedIndexedAccess": true, "types": ["chrome", "vitest/globals"] },
-  "include": ["src", "entrypoints", "test", "wxt.config.ts"]
+  "compilerOptions": { "strict": true, "noUncheckedIndexedAccess": true, "skipLibCheck": true, "types": ["node", "vitest/globals"] },
+  "include": ["src", "entrypoints", "test", "wxt.config.ts", ".wxt/wxt.d.ts"]
 }
