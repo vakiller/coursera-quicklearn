@@ -86,7 +86,7 @@ export function renderModuleMd(mod: OutlineModule, mm: ManifestModule, courseSlu
     const url = item ? itemUrl(courseSlug, item) : `${ORIGIN}/learn/${courseSlug}/item/${mi.id}`;
     if (mi.type === 'quiz') return `- 🧪 ${mi.title}${mi.graded ? ' (graded)' : ' (practice)'} — [Coursera](${url})`;
     const extra = item?.durationMin ? ` · ${item.durationMin} min` : '';
-    if (mi.file && (mi.status === 'ok' || mi.status === 'removed')) return `- [[${stripMd(mi.file)}|${mi.title}]] · ${mi.type}${extra}`;
+    if (mi.file && (mi.status === 'ok' || mi.status === 'removed')) return `- [[Coursera/${courseSlug}/${mm.folder}/${stripMd(mi.file)}|${mi.title}]] · ${mi.type}${extra}`;
     return `- ${mi.title} · ${mi.type} · ${mi.status} — [Coursera](${url})`;
   });
   parts.push(`## Items\n\n${lines.join('\n')}`);
@@ -106,6 +106,6 @@ export function renderCourseMd(outline: CourseOutline, manifest: Manifest): stri
     ],
     BARE,
   );
-  const mods = manifest.modules.map((m) => `- [[${m.folder}/_module|${m.folder}]]`).join('\n');
+  const mods = manifest.modules.map((m) => `- [[Coursera/${outline.slug}/${m.folder}/_module|${m.folder}]]`).join('\n');
   return `${fm}\n# ${outline.name}\n\n## Modules\n\n${mods}\n`;
 }

@@ -81,7 +81,7 @@ describe('renderModuleMd / renderCourseMd', () => {
   const md = renderModuleMd(mod, mm, 'project-initiation-google');
 
   it('lists every item in order with wikilinks for fetched files', () => {
-    expect(md).toContain('[[raw/01 - x (video)|Introduction to Course 2]]');
+    expect(md).toContain('[[Coursera/project-initiation-google/M01 - Fundamentals of project initiation/raw/01 - x (video)|Introduction to Course 2]]');
     expect(md.indexOf('Introduction to Course 2')).toBeLessThan(md.indexOf('Module 1 Challenge'));
   });
   it('shows quizzes as 🧪 lines with a Coursera link and no file link', () => {
@@ -102,6 +102,6 @@ describe('renderModuleMd / renderCourseMd', () => {
     const c = renderCourseMd(outline, manifest);
     expect(c).toMatch(/^---\nschema: coursera-vault\/1\n/);
     for (const k of ['course_id:', 'slug:', 'title:', 'url: "https://www.coursera.org/learn/project-initiation-google"', 'fetched_at:']) expect(c).toContain(k);
-    expect(c).toContain('[[M01 - Fundamentals of project initiation/_module|M01 - Fundamentals of project initiation]]');
+    expect(c).toContain('[[Coursera/project-initiation-google/M01 - Fundamentals of project initiation/_module|M01 - Fundamentals of project initiation]]');
   });
 });
