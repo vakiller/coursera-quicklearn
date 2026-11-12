@@ -1,0 +1,9 @@
+schema_version: "1.1"
+name: build-module-notes
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  Notes for Module 2 are written inside the module's notes/ folder of the vault (summary with a Mermaid mindmap,
+  mindmap.canvas, exam-prep with must-know items and a cheat sheet, examples, flashcards, pretest and practice
+  test with tick boxes and answer keys, _study.md study path), plus concept notes in Coursera/_concepts.
+  All links use full vault paths and resolve; nothing is written into raw/ or other modules.

@@ -17,7 +17,7 @@
 - Item `quiz` chỉ ghi vào manifest/`_module.md` với `file: null`, `status: "not_fetched"`; không tạo file raw.
 - Extension chỉ ghi: `Coursera/<slug>/_course.md`, `_manifest.json`, `M../_module.md`, `M../raw/*`. Không bao giờ ghi vào `notes/`, `my/`, `_concepts/`, `_profile.md`, `_dashboard.md`.
 - Frontmatter `schema: coursera-vault/1`; manifest `"schema": "coursera-vault/1"`.
-- Tên thư mục module `M` + 2 chữ số + ` - ` + tên; file item `NN - <Title> [video|reading].md`; ký tự cấm `/\:*?"<>|#^[]` bị loại; tên cắt tối đa 80 ký tự (trước phần ` [type].md`).
+- Tên thư mục module `M` + 2 chữ số + ` - ` + tên; file item `NN - <Title> (video|reading).md`; ký tự cấm `/\:*?"<>|#^[]` bị loại; tên cắt tối đa 80 ký tự (trước phần ` (type).md`).
 - Transcript: đoạn ~30–60 giây, bắt đầu bằng `**[MM:SS]**`, kết thúc bằng block id ` ^tMMSS`. Reading: mỗi đoạn kết thúc bằng ` ^pNN`.
 - Request tuần tự, delay mặc định 700ms, retry có backoff cho 429/5xx (tối đa 3 lần), 401/403 → dừng ngay với `AuthError`.
 - Ngôn ngữ transcript mặc định `en`.
@@ -112,7 +112,7 @@ git commit -m "chore: phase 0 Coursera API notes and fixtures"
   expect(sanitizeFileName('a'.repeat(120)).length).toBe(80);
   expect(sanitizeFileName('???')).toBe('untitled');            // Review Focus 3
   expect(moduleFolderName(3, 'Set goals: OKRs')).toBe('M03 - Set goals OKRs');
-  expect(itemFileName(7, 'Introduction [Part 1]', 'video')).toBe('07 - Introduction Part 1 [video].md');
+  expect(itemFileName(7, 'Introduction [Part 1]', 'video')).toBe('07 - Introduction Part 1 (video).md');
   expect(itemFileName(1, 'Same', 'video')).not.toBe(itemFileName(2, 'Same', 'video'));
   ```
 - [ ] **Step 2:** `cd extension && npx vitest run test/naming.test.ts` → FAIL (module not found).
@@ -196,7 +196,7 @@ git commit -m "chore: phase 0 Coursera API notes and fixtures"
 - [ ] **Step 1: Write failing tests**
   - `sha256('abc')` → `sha256:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad`.
   - `renderRawFile` → bắt đầu `---\nschema: coursera-vault/1\ntype: video\n`, có đủ mọi key của spec 3.1 theo đúng thứ tự, `title` có dấu `"` được escape YAML, kết thúc frontmatter rồi `# <title>` rồi body.
-  - `renderModuleMd` → có mục `## Learning objectives` (bỏ qua nếu rỗng), `## Items` liệt kê mọi item theo thứ tự; item video/reading là wikilink `[[raw/07 - … [video]|…]]`; item quiz là dòng `🧪 <title> (graded)` kèm link Coursera, **không** link file.
+  - `renderModuleMd` → có mục `## Learning objectives` (bỏ qua nếu rỗng), `## Items` liệt kê mọi item theo thứ tự; item video/reading là wikilink `[[raw/07 - … (video)|…]]`; item quiz là dòng `🧪 <title> (graded)` kèm link Coursera, **không** link file.
   - `renderCourseMd` → frontmatter `schema`, `course_id`, `slug`, `title`, `url`, `fetched_at`; danh sách link tới `_module.md` của từng module.
 - [ ] **Step 2:** FAIL. **Step 3:** Implement (YAML viết tay, giá trị chuỗi luôn đặt trong `"…"` có escape). **Step 4:** PASS.
 - [ ] **Step 5: Commit** `feat(ext): sha256 and markdown renderers for raw, course, module`
@@ -215,7 +215,7 @@ git commit -m "chore: phase 0 Coursera API notes and fixtures"
 
 - [ ] **Step 1: Write failing tests**
   - Item quiz → `{ file: null, content_hash: null, status: 'not_fetched', graded: true }`.
-  - Item video có result ok → `file` = `raw/01 - … [video].md` (tương đối với thư mục module), `folder` = `M01 - …`.
+  - Item video có result ok → `file` = `raw/01 - … (video).md` (tương đối với thư mục module), `folder` = `M01 - …`.
   - `mergeWithPrevious`: item có trong `prev` nhưng không có trong `next` → được thêm lại vào đúng module với `status: 'removed'`, giữ `file` cũ (Review Focus 5).
   - `prev = null` → trả nguyên `next`.
 - [ ] **Step 2:** FAIL. **Step 3:** Implement. **Step 4:** PASS.
@@ -256,7 +256,7 @@ git commit -m "chore: phase 0 Coursera API notes and fixtures"
 - Produces: `saveRootHandle(h)`, `loadRootHandle(): Promise<FileSystemDirectoryHandle | null>` (IndexedDB)
 
 - [ ] **Step 1: Write failing tests**
-  - `FsAccessWriter` với fake directory handle (in-memory mock của `getDirectoryHandle({create:true})`/`getFileHandle`/`createWritable`): `writeText('Coursera/a/M01 - x/raw/01 - y [video].md', 'z')` tạo đủ thư mục lồng nhau; `readText` file không tồn tại → `null`.
+  - `FsAccessWriter` với fake directory handle (in-memory mock của `getDirectoryHandle({create:true})`/`getFileHandle`/`createWritable`): `writeText('Coursera/a/M01 - x/raw/01 - y (video).md', 'z')` tạo đủ thư mục lồng nhau; `readText` file không tồn tại → `null`.
   - **Guard:** `writeText` với path chứa `/notes/`, `/my/`, `/_concepts/`, hoặc kết thúc `_profile.md`/`_dashboard.md` → throw (cả 3 writer dùng chung hàm `assertExtensionOwnedPath`).
   - `ensurePermission`: mock `queryPermission` → `'prompt'`, `requestPermission` → `'granted'` ⇒ `true`; `'denied'` ⇒ `false` (Review Focus 4).
   - `ZipWriter.finish()` → Blob mở lại bằng JSZip có đúng các path đã ghi.

@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: notes-in-current-vault
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  Claude is started inside the vault (current folder = vault root) and the user gives no path. The skill finds
+  the vault on its own and writes Module 1 notes into Coursera/project-initiation-google/M01 - …/notes/ of that
+  same folder (no extra output or temp folder), and the reply tells the user which note to open in Obsidian.

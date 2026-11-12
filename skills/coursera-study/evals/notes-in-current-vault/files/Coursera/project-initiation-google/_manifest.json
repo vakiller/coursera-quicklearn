@@ -1,0 +1,824 @@
+{
+  "schema": "coursera-vault/1",
+  "course": {
+    "id": "mYs5UAp9Eeuh2QpCvqFzYQ",
+    "slug": "project-initiation-google",
+    "title": "Project Initiation: Starting a Successful Project",
+    "fetched_at": "2026-11-11T14:04:46.019Z"
+  },
+  "modules": [
+    {
+      "index": 1,
+      "id": "8DuEZ",
+      "title": "Fundamentals of project initiation",
+      "folder": "M01 - Fundamentals of project initiation",
+      "items": [
+        {
+          "index": 1,
+          "id": "qHFCW",
+          "type": "video",
+          "title": "Introduction to Course 2",
+          "file": "raw/01 - Introduction to Course 2 (video).md",
+          "content_hash": "sha256:db8cb13ba2a9efb5d4fd4a4b027f547475b8ebb43e7669f785d9a79300d70a07",
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "id": "CQ4he",
+          "type": "reading",
+          "title": "Course 2 overview",
+          "file": "raw/02 - Course 2 overview (reading).md",
+          "content_hash": "sha256:6dcf959cbe0b8267f4389e80e1bb5bf10df47cbbb8435900fb8e99e64ce05c8e",
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "id": "KgGcu",
+          "type": "reading",
+          "title": "Helpful resources to get started",
+          "file": "raw/03 - Helpful resources to get started (reading).md",
+          "content_hash": "sha256:fd80bb2eeea7cc24827c714ebce83dc8e290fb12bad25088bf7bf72907cc311d",
+          "status": "ok"
+        },
+        {
+          "index": 4,
+          "id": "r7wIt",
+          "type": "video",
+          "title": "Why is project initiation essential?",
+          "file": "raw/04 - Why is project initiation essential (video).md",
+          "content_hash": "sha256:73c6b2c7ef5e40d8601275936137978e2fa272ff57616e262b868d5c39ba892c",
+          "status": "ok"
+        },
+        {
+          "index": 5,
+          "id": "LT5zW",
+          "type": "video",
+          "title": "Key components of project initiation",
+          "file": "raw/05 - Key components of project initiation (video).md",
+          "content_hash": "sha256:cfd069da049982212ce2f88e44abf96a21b5cb7ee16eecdf89025e74727d8d7f",
+          "status": "ok"
+        },
+        {
+          "index": 6,
+          "id": "2n2Ew",
+          "type": "quiz",
+          "title": "Reflection: Project initiation and key components",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 7,
+          "id": "OphkJ",
+          "type": "video",
+          "title": "Afsheen: Listening to learn",
+          "file": "raw/07 - Afsheen Listening to learn (video).md",
+          "content_hash": "sha256:9b974a014b45b63e4282cb71f8bc2137a0f60b12084eedd444c911452608aee3",
+          "status": "ok"
+        },
+        {
+          "index": 8,
+          "id": "ThXXJ",
+          "type": "other",
+          "title": "Explore: Project Initiation",
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 9,
+          "id": "hqo2o",
+          "type": "reading",
+          "title": "Performing a cost-benefit analysis",
+          "file": "raw/09 - Performing a cost-benefit analysis (reading).md",
+          "content_hash": "sha256:add2b4f20b208e32089808b661d7241b9135bab97df58085dfde54b5e04d6fb3",
+          "status": "ok"
+        },
+        {
+          "index": 10,
+          "id": "ErmdB",
+          "type": "video",
+          "title": "Wrap-up",
+          "file": "raw/10 - Wrap-up (video).md",
+          "content_hash": "sha256:9800bf0b2c113f19a1222533af7042bb2f25f366ccc69a4bb84175d9e8dfd364",
+          "status": "ok"
+        },
+        {
+          "index": 11,
+          "id": "oLmxE",
+          "type": "quiz",
+          "title": "Module 1 Challenge",
+          "graded": true,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        }
+      ]
+    },
+    {
+      "index": 2,
+      "id": "rVp0y",
+      "title": "Defining project goals, scope, and success criteria",
+      "folder": "M02 - Defining project goals, scope, and success criteria",
+      "items": [
+        {
+          "index": 1,
+          "id": "Lqpt3",
+          "type": "video",
+          "title": "Introduction: Defining project goals, scope, and success criteria",
+          "file": "raw/01 - Introduction Defining project goals, scope, and success criteria (video).md",
+          "content_hash": "sha256:5885f5148db6f2b0e1cf9ab1dfded6c5a177f5c6bdbdfd2ca937570ff9c0b608",
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "id": "gio62",
+          "type": "video",
+          "title": "Determining project goals and deliverables",
+          "file": "raw/02 - Determining project goals and deliverables (video).md",
+          "content_hash": "sha256:677d24ba203558620c0a0fe465e80bd16f4cfed61ee9de7f5611dd37c21aa95a",
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "id": "UnIvw",
+          "type": "other",
+          "title": "Explore: Project Plant Pals: Initiation",
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 4,
+          "id": "9sgXu",
+          "type": "video",
+          "title": "How to set SMART goals",
+          "file": "raw/04 - How to set SMART goals (video).md",
+          "content_hash": "sha256:fe1f1902bda84d4c5ddd1113ebd7ee5ea860adbfd35e7501e67d7982a5d2c681",
+          "status": "ok"
+        },
+        {
+          "index": 5,
+          "id": "mj0tv",
+          "type": "reading",
+          "title": "SMART goals: Making goals meaningful",
+          "file": "raw/05 - SMART goals Making goals meaningful (reading).md",
+          "content_hash": "sha256:d3735102bea3c372c53bbcd0415135b4fbfa4020b6b1a567aa47460ea87e4787",
+          "status": "ok"
+        },
+        {
+          "index": 6,
+          "id": "5MRv3",
+          "type": "quiz",
+          "title": "Activity: Define and determine SMART project goals",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 7,
+          "id": "Bg7Zw",
+          "type": "reading",
+          "title": "Activity Exemplar: Define and determine SMART project goals",
+          "file": "raw/07 - Activity Exemplar Define and determine SMART project goals (reading).md",
+          "content_hash": "sha256:1e64dee6d3944750bc90ca63f8c980db263c9a6505f9a16f90c0c39d933827aa",
+          "status": "ok"
+        },
+        {
+          "index": 8,
+          "id": "VYOxE",
+          "type": "video",
+          "title": "Introduction to OKRs",
+          "file": "raw/08 - Introduction to OKRs (video).md",
+          "content_hash": "sha256:524a6e87af3f80ec4f8feb700c7be61ed0a1ee7010a8952cb0f25153fd585244",
+          "status": "ok"
+        },
+        {
+          "index": 9,
+          "id": "Tt5Xr",
+          "type": "reading",
+          "title": "Creating OKRs for your project",
+          "file": "raw/09 - Creating OKRs for your project (reading).md",
+          "content_hash": "sha256:bf6b36ba0c9e38a773685df41ca90d54342d2759f48e5b03bddd20247d454458",
+          "status": "ok"
+        },
+        {
+          "index": 10,
+          "id": "CPfut",
+          "type": "quiz",
+          "title": "Optional Activity: Create OKRs for your project",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 11,
+          "id": "Wcttz",
+          "type": "reading",
+          "title": "Optional Activity Exemplar: Create OKRs for your project",
+          "file": "raw/11 - Optional Activity Exemplar Create OKRs for your project (reading).md",
+          "content_hash": "sha256:3630a56812b21d5538de281f226b2eb0f0e50ccce62d26f89f2030aec463892e",
+          "status": "ok"
+        },
+        {
+          "index": 12,
+          "id": "LABD1",
+          "type": "quiz",
+          "title": "Test your knowledge: Identifying project goals",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 13,
+          "id": "KaAfb",
+          "type": "video",
+          "title": "Determining a project's scope",
+          "file": "raw/13 - Determining a project's scope (video).md",
+          "content_hash": "sha256:7f2b5d6a7f5d0f53895a8ecfff059a602fe772989baf42d88abab835a948dc10",
+          "status": "ok"
+        },
+        {
+          "index": 14,
+          "id": "EZHIq",
+          "type": "reading",
+          "title": "Gathering information to define scope",
+          "file": "raw/14 - Gathering information to define scope (reading).md",
+          "content_hash": "sha256:5a7629b6f96bfc1c2b2883822c042af9f89a0f7b7ba70c5127f4e5fa572e9e44",
+          "status": "ok"
+        },
+        {
+          "index": 15,
+          "id": "vBzzV",
+          "type": "video",
+          "title": "Monitoring and maintaining a project's scope",
+          "file": "raw/15 - Monitoring and maintaining a project's scope (video).md",
+          "content_hash": "sha256:8b4234840ebc527d1c5a293728891f3730b4fc2a342fd1cf53a02e81b64e3024",
+          "status": "ok"
+        },
+        {
+          "index": 16,
+          "id": "fNCow",
+          "type": "reading",
+          "title": "Strategies for controlling scope creep",
+          "file": "raw/16 - Strategies for controlling scope creep (reading).md",
+          "content_hash": "sha256:e694b76b40838edf50f72a4def58e1e114d5fe5f2efdde34070298e702335d01",
+          "status": "ok"
+        },
+        {
+          "index": 17,
+          "id": "Cys7g",
+          "type": "quiz",
+          "title": "Test your knowledge: Defining project scope",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 18,
+          "id": "iHkRz",
+          "type": "video",
+          "title": "Managing changes to a project's scope",
+          "file": "raw/18 - Managing changes to a project's scope (video).md",
+          "content_hash": "sha256:b4e4130237f5186cfe1202f775886a16bb77b8dd36c790188ac1ac4f75b3f8ac",
+          "status": "ok"
+        },
+        {
+          "index": 19,
+          "id": "2dYj5",
+          "type": "video",
+          "title": "Torie: The importance of staying within scope",
+          "file": "raw/19 - Torie The importance of staying within scope (video).md",
+          "content_hash": "sha256:ca610f52744f0d4d381c75fd693044356e30628b3ba112f0b1715ee044f587d7",
+          "status": "ok"
+        },
+        {
+          "index": 20,
+          "id": "GvfKV",
+          "type": "reading",
+          "title": "Optional: Reviewing the Triple Constraint",
+          "file": "raw/20 - Optional Reviewing the Triple Constraint (reading).md",
+          "content_hash": "sha256:a738a74c64a295e139e7bfdec61e853c700ef2f14abf818152ebff520d03d6ad",
+          "status": "ok"
+        },
+        {
+          "index": 21,
+          "id": "rRcCi",
+          "type": "quiz",
+          "title": "Reflection: Applying the Triple Constraint",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 22,
+          "id": "aDI4h",
+          "type": "video",
+          "title": "Launching and landing a project",
+          "file": "raw/22 - Launching and landing a project (video).md",
+          "content_hash": "sha256:c79aafaecda47297ef00005c5fedaf0b36a9af4a021ba54895095384ef10c182",
+          "status": "ok"
+        },
+        {
+          "index": 23,
+          "id": "4qz63",
+          "type": "reading",
+          "title": "Don't forget to land: Measuring project success",
+          "file": "raw/23 - Don't forget to land Measuring project success (reading).md",
+          "content_hash": "sha256:fe9a4535c5832231c7c6aa37df7604b4b7dd39691c57b9b234aacb65cb6a56f2",
+          "status": "ok"
+        },
+        {
+          "index": 24,
+          "id": "FB6w4",
+          "type": "video",
+          "title": "Defining success criteria",
+          "file": "raw/24 - Defining success criteria (video).md",
+          "content_hash": "sha256:b9668ef1a9b007ce74fa3bd68aeca31c17418e0482d3a2379936a3cdda4175e0",
+          "status": "ok"
+        },
+        {
+          "index": 25,
+          "id": "BvetB",
+          "type": "reading",
+          "title": "Tracking and communicating success criteria",
+          "file": "raw/25 - Tracking and communicating success criteria (reading).md",
+          "content_hash": "sha256:8b768bc9b9a5fca318e652c5eb9a8286881edd162dec09d5c44bca46786029ac",
+          "status": "ok"
+        },
+        {
+          "index": 26,
+          "id": "d1ZF4",
+          "type": "reading",
+          "title": "Using OKRs to evaluate progress",
+          "file": "raw/26 - Using OKRs to evaluate progress (reading).md",
+          "content_hash": "sha256:ca3dc187a8bf4e68ff0672ea500496de239bb418a35683443a7d2dc7a22bee05",
+          "status": "ok"
+        },
+        {
+          "index": 27,
+          "id": "XlLtD",
+          "type": "video",
+          "title": "Wrap-up",
+          "file": "raw/27 - Wrap-up (video).md",
+          "content_hash": "sha256:863921a9815ba32f017b8600a51477a58ad9e5d6b0af2a13b54b1e49cb3773ae",
+          "status": "ok"
+        },
+        {
+          "index": 28,
+          "id": "DbyCq",
+          "type": "quiz",
+          "title": "Module 2 Challenge",
+          "graded": true,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        }
+      ]
+    },
+    {
+      "index": 3,
+      "id": "BTyWx",
+      "title": "Working effectively with stakeholders",
+      "folder": "M03 - Working effectively with stakeholders",
+      "items": [
+        {
+          "index": 1,
+          "id": "xU6mi",
+          "type": "video",
+          "title": "Introduction: Working effectively with stakeholders",
+          "file": "raw/01 - Introduction Working effectively with stakeholders (video).md",
+          "content_hash": "sha256:b4346f0544d779bdad909dfd29b2fc57f8c9686ca3f5e47888eaaa9bf2fea0a8",
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "id": "5InMu",
+          "type": "video",
+          "title": "Accessibility for project managers",
+          "file": "raw/02 - Accessibility for project managers (video).md",
+          "content_hash": "sha256:42d7c1723e22b1602441867b759692e1486c7086c7b72a99d3929ae2eb3ea8e4",
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "id": "pg2u3",
+          "type": "video",
+          "title": "Choosing a project team",
+          "file": "raw/03 - Choosing a project team (video).md",
+          "content_hash": "sha256:923838240118843f32d3638cf6f10c109a49f32e3591382b771f3d443579b22a",
+          "status": "ok"
+        },
+        {
+          "index": 4,
+          "id": "m6Uhe",
+          "type": "reading",
+          "title": "Review: The building blocks of a project dream team",
+          "file": "raw/04 - Review The building blocks of a project dream team (reading).md",
+          "content_hash": "sha256:3b1f6b84e859c98d53e467eda0f1ded49f3db0c98c4cca4b431eb43731422aa0",
+          "status": "ok"
+        },
+        {
+          "index": 5,
+          "id": "GBc26",
+          "type": "video",
+          "title": "Defining project roles",
+          "file": "raw/05 - Defining project roles (video).md",
+          "content_hash": "sha256:fab1f98198e4b6ba97baf47400b43fe8ff184ee7b895da042721bea62404e89c",
+          "status": "ok"
+        },
+        {
+          "index": 6,
+          "id": "7Xmnh",
+          "type": "reading",
+          "title": "Essential project roles",
+          "file": "raw/06 - Essential project roles (reading).md",
+          "content_hash": "sha256:0a41fc1f5a1ea691008ce50c3e7a7cb0b277b6b79cbf058cdc399c1f0af51dac",
+          "status": "ok"
+        },
+        {
+          "index": 7,
+          "id": "ZeRNv",
+          "type": "video",
+          "title": "John: The importance of a project team",
+          "file": "raw/07 - John The importance of a project team (video).md",
+          "content_hash": "sha256:b2f85247564ccd8999f13290fa4ff1f00a16a2f7336d3a61966debe282f9d463",
+          "status": "ok"
+        },
+        {
+          "index": 8,
+          "id": "q4qoA",
+          "type": "other",
+          "title": "Identify: Project role responsibilities",
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 9,
+          "id": "8aCzR",
+          "type": "video",
+          "title": "Completing a stakeholder analysis",
+          "file": "raw/09 - Completing a stakeholder analysis (video).md",
+          "content_hash": "sha256:1e220adad059a6050ccf9ec3367456a570dd7da63e944e3209ea49d7d2a8e2bb",
+          "status": "ok"
+        },
+        {
+          "index": 10,
+          "id": "xYge2",
+          "type": "reading",
+          "title": "Prioritizing stakeholders and generating their buy-in",
+          "file": "raw/10 - Prioritizing stakeholders and generating their buy-in (reading).md",
+          "content_hash": "sha256:4a7c3fdc45019cf41b67b34b509f40276eca64c00ce297243caabb17334399ca",
+          "status": "ok"
+        },
+        {
+          "index": 11,
+          "id": "LSbSh",
+          "type": "other",
+          "title": "Explore: Stakeholder interviews",
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 12,
+          "id": "Yg8Tu",
+          "type": "quiz",
+          "title": "Activity: Complete a stakeholder analysis and power grid",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 13,
+          "id": "fY451",
+          "type": "reading",
+          "title": "Activity Exemplar: Complete a stakeholder analysis and power grid",
+          "file": null,
+          "content_hash": null,
+          "status": "locked"
+        },
+        {
+          "index": 14,
+          "id": "7iDtb",
+          "type": "quiz",
+          "title": "Test your knowledge: Evaluating stakeholders",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 15,
+          "id": "pPjIP",
+          "type": "video",
+          "title": "Elements of a RACI chart",
+          "file": "raw/15 - Elements of a RACI chart (video).md",
+          "content_hash": "sha256:890ea9427fdf3618050fe073c0736d739323eaeace1e5ef2b843b9b968ba56e3",
+          "status": "ok"
+        },
+        {
+          "index": 16,
+          "id": "WC2rP",
+          "type": "reading",
+          "title": "Building out a RACI chart",
+          "file": "raw/16 - Building out a RACI chart (reading).md",
+          "content_hash": "sha256:3f823914c8345400e659f13922ac1ce69974161a18b7a5fa299077cd4f40a565",
+          "status": "ok"
+        },
+        {
+          "index": 17,
+          "id": "dF8s1",
+          "type": "video",
+          "title": "Certificate completers: Staying motivated in the program",
+          "file": "raw/17 - Certificate completers Staying motivated in the program (video).md",
+          "content_hash": "sha256:08658ba7b4881c400ae5e70847afba082da677906a73e8fe2a119512b016863d",
+          "status": "ok"
+        },
+        {
+          "index": 18,
+          "id": "caqAJ",
+          "type": "reading",
+          "title": "Getting the most out of a RACI chart",
+          "file": "raw/18 - Getting the most out of a RACI chart (reading).md",
+          "content_hash": "sha256:ccc931ab50e710fd742dd5b4f91ad8a429dbfc1993f443304fe8858c0bd997ef",
+          "status": "ok"
+        },
+        {
+          "index": 19,
+          "id": "RTxqW",
+          "type": "quiz",
+          "title": "Activity: Assign project roles and responsibilities in a RACI chart",
+          "graded": true,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 20,
+          "id": "sGamZ",
+          "type": "reading",
+          "title": "Exemplar: Assign project roles and responsibilities in a RACI chart",
+          "file": null,
+          "content_hash": null,
+          "status": "locked"
+        },
+        {
+          "index": 21,
+          "id": "Zbb7B",
+          "type": "reading",
+          "title": "Why projects fail: Initiation missteps",
+          "file": "raw/21 - Why projects fail Initiation missteps (reading).md",
+          "content_hash": "sha256:a5cd34f6c541b83112709bfc1b37687d494308489972f78f6bb9850a91d5f2ce",
+          "status": "ok"
+        },
+        {
+          "index": 22,
+          "id": "jb3av",
+          "type": "video",
+          "title": "Wrap-up",
+          "file": "raw/22 - Wrap-up (video).md",
+          "content_hash": "sha256:597e76dec75b5d923063ec1dd95addd0ec4812a6626f82a7bd19d76f3e2c22ce",
+          "status": "ok"
+        },
+        {
+          "index": 23,
+          "id": "C4M5c",
+          "type": "quiz",
+          "title": "Module 3 Challenge",
+          "graded": true,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        }
+      ]
+    },
+    {
+      "index": 4,
+      "id": "nJQPx",
+      "title": "Utilizing resources and tools for project success",
+      "folder": "M04 - Utilizing resources and tools for project success",
+      "items": [
+        {
+          "index": 1,
+          "id": "Tigjo",
+          "type": "video",
+          "title": "Introduction: Utilizing resources and tools for project success",
+          "file": "raw/01 - Introduction Utilizing resources and tools for project success (video).md",
+          "content_hash": "sha256:170d9be2243a064b7efb3300642b723321ecb4051d669222dd199fb565957b52",
+          "status": "ok"
+        },
+        {
+          "index": 2,
+          "id": "0HRf1",
+          "type": "video",
+          "title": "Essential project resources",
+          "file": "raw/02 - Essential project resources (video).md",
+          "content_hash": "sha256:82e77e1b1c804f8e28a356ff227b9a4650134c948f2a75a14435d2ccbaee71b4",
+          "status": "ok"
+        },
+        {
+          "index": 3,
+          "id": "SzFm7",
+          "type": "reading",
+          "title": "Managing resources to get the job done",
+          "file": "raw/03 - Managing resources to get the job done (reading).md",
+          "content_hash": "sha256:a4c51f7f58aece5cd6e6896b9d788b0779ddb39cd34d96abf1fc67b80ff38c19",
+          "status": "ok"
+        },
+        {
+          "index": 4,
+          "id": "0YOtr",
+          "type": "video",
+          "title": "The value of project documentation",
+          "file": "raw/04 - The value of project documentation (video).md",
+          "content_hash": "sha256:6c1d1f03274a6631bae826e927d7f42300ed511bc379a88b2aafe625dad782a6",
+          "status": "ok"
+        },
+        {
+          "index": 5,
+          "id": "MusSx",
+          "type": "video",
+          "title": "Project proposals and charters 101",
+          "file": "raw/05 - Project proposals and charters 101 (video).md",
+          "content_hash": "sha256:a2a232de1952415e0bde6cf1eb79edef817da4311335d4db0bbd883691ef8369",
+          "status": "ok"
+        },
+        {
+          "index": 6,
+          "id": "wEGDz",
+          "type": "reading",
+          "title": "Project charters: Elements and formats",
+          "file": "raw/06 - Project charters Elements and formats (reading).md",
+          "content_hash": "sha256:b3bfce75d7a2bfb8add99acf255e562fe0cf8524caec456a5d8d1d76a5fc8b65",
+          "status": "ok"
+        },
+        {
+          "index": 7,
+          "id": "Pui2Q",
+          "type": "video",
+          "title": "Developing a project charter ",
+          "file": "raw/07 - Developing a project charter (video).md",
+          "content_hash": "sha256:d0bae116eb5296703e6d2453b51486a4fa019a92c8f7b0ae6422cb9bdfab0f85",
+          "status": "ok"
+        },
+        {
+          "index": 8,
+          "id": "Wnj48",
+          "type": "other",
+          "title": "Identify: Components of a project charter ",
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 9,
+          "id": "i3bVB",
+          "type": "quiz",
+          "title": "Activity: Create a project charter",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 10,
+          "id": "JjKAP",
+          "type": "video",
+          "title": "Utilizing tools for effective project management",
+          "file": "raw/10 - Utilizing tools for effective project management (video).md",
+          "content_hash": "sha256:d15d38534aa655a35b7180c5b03d2e3d5ec03fe59fd10f9fe3e92d68d163d2ca",
+          "status": "ok"
+        },
+        {
+          "index": 11,
+          "id": "kTIj2",
+          "type": "reading",
+          "title": "Introducing new tools to a team",
+          "file": "raw/11 - Introducing new tools to a team (reading).md",
+          "content_hash": "sha256:2c7dc4ba2d450907aba2932a66dc76626d9b315867fb61740fd23ad7536287af",
+          "status": "ok"
+        },
+        {
+          "index": 12,
+          "id": "eVrCo",
+          "type": "video",
+          "title": "Exploring types of project management tools",
+          "file": "raw/12 - Exploring types of project management tools (video).md",
+          "content_hash": "sha256:676035df9c4af32de97178bbe4b5ded0e68689dc96e1b0b18d4a1b8e2e70ccd6",
+          "status": "ok"
+        },
+        {
+          "index": 13,
+          "id": "XBd6l",
+          "type": "quiz",
+          "title": "Test your knowledge: Evaluating tools ",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 14,
+          "id": "T12Jz",
+          "type": "video",
+          "title": "Common project management tools",
+          "file": "raw/14 - Common project management tools (video).md",
+          "content_hash": "sha256:b12dbe8133c3c1ca04cf24c02c318144b68b11d3c3fb93d4ad6a97af1fc7295f",
+          "status": "ok"
+        },
+        {
+          "index": 15,
+          "id": "q941t",
+          "type": "reading",
+          "title": "Using Google Sheets for project management ",
+          "file": "raw/15 - Using Google Sheets for project management (reading).md",
+          "content_hash": "sha256:e3daf4d18fdc399ce59776487fbaa0b55e7ee3521c7bcd2032b22ec0e73a1303",
+          "status": "ok"
+        },
+        {
+          "index": 16,
+          "id": "6tBKc",
+          "type": "reading",
+          "title": "Demonstrating your knowledge of project management tools",
+          "file": "raw/16 - Demonstrating your knowledge of project management tools (reading).md",
+          "content_hash": "sha256:0ec63946091ba1cd8d94dcbcd57ec732e9bb28a6cb31f1132d74170173288162",
+          "status": "ok"
+        },
+        {
+          "index": 17,
+          "id": "jYYLk",
+          "type": "reading",
+          "title": "Build a project management tool tracker",
+          "file": "raw/17 - Build a project management tool tracker (reading).md",
+          "content_hash": "sha256:7daf21ae3b6dfe03a1b70e5ca7955e3b56139d0d154fe10939f63fcfca5dbf2e",
+          "status": "ok"
+        },
+        {
+          "index": 18,
+          "id": "N2C3m",
+          "type": "quiz",
+          "title": "Reflection: Project tools",
+          "graded": false,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 19,
+          "id": "KSxbz",
+          "type": "video",
+          "title": "Amar: Tools are our best friends",
+          "file": "raw/19 - Amar Tools are our best friends (video).md",
+          "content_hash": "sha256:b1b3a50148f903189b06006f6e41cfc16c1c06a8458e12e6074edb28d5194e62",
+          "status": "ok"
+        },
+        {
+          "index": 20,
+          "id": "CqnYS",
+          "type": "quiz",
+          "title": "Module 4 Challenge ",
+          "graded": true,
+          "file": null,
+          "content_hash": null,
+          "status": "not_fetched"
+        },
+        {
+          "index": 21,
+          "id": "OF5WG",
+          "type": "video",
+          "title": "Course wrap-up",
+          "file": null,
+          "content_hash": null,
+          "status": "locked"
+        },
+        {
+          "index": 22,
+          "id": "tpM6n",
+          "type": "reading",
+          "title": "Course 2 glossary",
+          "file": "raw/22 - Course 2 glossary (reading).md",
+          "content_hash": "sha256:93c031403e6c5af8b04b8c6630955d89d3f88c6904fca68c5d580d215537361a",
+          "status": "ok"
+        },
+        {
+          "index": 23,
+          "id": "YywoM",
+          "type": "reading",
+          "title": "Get started on Course 3",
+          "file": "raw/23 - Get started on Course 3 (reading).md",
+          "content_hash": "sha256:0b1547ed37cd322f2267fd37af66003179e575c0d766072b7aa7f65c9c10076e",
+          "status": "ok"
+        }
+      ]
+    }
+  ]
+}

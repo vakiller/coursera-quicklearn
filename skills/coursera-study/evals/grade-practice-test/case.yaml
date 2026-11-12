@@ -1,0 +1,8 @@
+schema_version: "1.1"
+name: grade-practice-test
+context:
+  scaffold_script: place-files.sh
+expected_outcome: |
+  The practice test is graded 3/6 (50%): Q1 and Q4 correct, Q5 "scope creeping" judged correct by meaning,
+  Q2 (multi-select A,B vs A,C), Q3 and Q6 wrong. The score and weak objectives are written into the file and
+  _study.md, a retry file on the weak objectives is created, and the reply points to sources to re-read.
